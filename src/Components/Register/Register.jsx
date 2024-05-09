@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../Firebase/AuthProvider";
 const Register = () => {
   const { register, handleSubmit } = useForm();
+
+  const { emailSignIn } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     const email = data.email;
@@ -9,6 +13,13 @@ const Register = () => {
     const photoUrl = data.photoUrl;
     const password = data.password;
     console.log(email, name, photoUrl, password);
+    emailSignIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
