@@ -9,7 +9,6 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 const LogIn = () => {
   const { register, handleSubmit } = useForm();
   const { emailSignUp } = useContext(AuthContext);
-  console.log(emailSignUp);
   // const { emailSignIn, googleLogIn, githubLogIn, setUser } =
   //   useContext(AuthContext);
   // const [loginError, setLoginError] = useState("");
@@ -20,6 +19,14 @@ const LogIn = () => {
     const email = data.email;
     const password = data.password;
     console.log(email, password);
+
+    emailSignUp(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // emailSignIn(email, password)
     //   .then((result) => {
