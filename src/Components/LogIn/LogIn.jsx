@@ -2,10 +2,14 @@
 import { NavLink } from "react-router-dom";
 // import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../Firebase/AuthProvider";
 // import { Helmet } from "react-helmet";
 
 const LogIn = () => {
   const { register, handleSubmit } = useForm();
+  const { emailSignUp } = useContext(AuthContext);
+  console.log(emailSignUp);
   // const { emailSignIn, googleLogIn, githubLogIn, setUser } =
   //   useContext(AuthContext);
   // const [loginError, setLoginError] = useState("");
